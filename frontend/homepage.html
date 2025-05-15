@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relax and view the coolness</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Lava lamp styles */
+        .lava-lamp {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            background: radial-gradient(circle, rgba(255,0,150,0.7), rgba(150,0,255,0.5));
+            animation: lava-flow 8s infinite ease-in-out alternate;
+            z-index: -1;
+        }
+
+        .lava-lamp.left {
+            left: 0;
+        }
+
+        .lava-lamp.right {
+            right: 0;
+        }
+
+        @keyframes lava-flow {
+            0% {
+                transform: scaleY(1.2) translateY(0);
+            }
+            50% {
+                transform: scaleY(1.5) translateY(-20px);
+            }
+            100% {
+                transform: scaleY(1) translateY(20px);
+            }
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid #444;
+            width: 100%;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .project-list {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .project-item {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #555;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .project-item:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-5px);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 10px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid #444;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="lava-lamp left"></div>
+    <div class="lava-lamp right"></div>
+
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <p>Explore my projects in a relaxing and inviting atmosphere.</p>
+    </header>
+
+    <section class="project-list">
+        <div class="project-item" data-project='{"title": "Web Design Project", "link": "https://github.com/grgGIT/NMID-NMD-Capstone", "description": "A responsive web design project focusing on modern UI/UX principles and interactive elements."}'>
+            <h3>Project 1: Web Design</h3>
+            <p>Modern web design with responsive layouts</p>
+        </div>
+        <div class="project-item" data-project='{"title": "App Development", "link": "https://github.com/grgGIT/NMID-NMD-Capstone", "description": "Mobile application development project showcasing native features and smooth user experience."}'>
+            <h3>Project 2: App Development</h3>
+            <p>Cross-platform mobile application</p>
+        </div>
+        <div class="project-item" data-project='{"title": "Game Prototype", "link": "https://github.com/grgGIT/NMID-NMD-Capstone", "description": "An interactive game prototype built with modern web technologies and engaging gameplay mechanics."}'>
+            <h3>Project 3: Game Prototype</h3>
+            <p>Browser-based gaming experience</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+
+    
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    projectItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const projectData = JSON.parse(this.getAttribute('data-project'));
+            viewProject(projectData);
+        });
+    });
+
+    function viewProject(project) {
+        const template = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${project.title}</title>
+                <style>
+                    body {
+                        margin: 0;
+                        font-family: Arial, sans-serif;
+                        background-color: #222;
+                        color: #fff;
+                        padding: 20px;
+                        min-height: 100vh;
+                    }
+                    .container {
+                        max-width: 800px;
+                        margin: 0 auto;
+                        background: rgba(0, 0, 0, 0.8);
+                        padding: 20px;
+                        border-radius: 10px;
+                        border: 1px solid #444;
+                    }
+                    h1 {
+                        color: #fff;
+                        margin-bottom: 20px;
+                    }
+                    a {
+                        color: #00ffcc;
+                        text-decoration: none;
+                        transition: color 0.3s;
+                    }
+                    a:hover {
+                        color: #66ffff;
+                        text-decoration: underline;
+                    }
+                    .back-button {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background: #333;
+                        color: #fff;
+                        border-radius: 5px;
+                        margin-top: 20px;
+                        cursor: pointer;
+                        border: none;
+                    }
+                    .back-button:hover {
+                        background: #444;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>${project.title}</h1>
+                    <p>${project.description}</p>
+                    <p>Explore the full project on <a href="${project.link}" target="_blank">GitHub</a>.</p>
+                    <button class="back-button" onclick="window.close()">Close Window</button>
+                </div>
+            </body>
+            </html>
+        `;
+        const projectWindow = window.open('', '_blank', 'width=800,height=600');
+        projectWindow.document.open();
+        projectWindow.document.write(template);
+        projectWindow.document.close();
+    }
+});
+</script>
+</html>

@@ -66,60 +66,156 @@
             opacity: 0.7;
             mix-blend-mode: screen;
             animation-timing-function: ease-in-out;
+            /* Each blob will have its own animation below */
         }
+
         /* Left lamp blobs */
         .lava-lamp.left .blob1 {
-            width: 70px; height: 120px;
+            width: 100px; height: 120px;
             background: radial-gradient(circle at 40% 60%, var(--lava1) 70%, transparent 100%);
-            left: 10px; top: 20%;
-            animation: blob-move1 8s infinite alternate;
+            left: 150px; top: 10%;
+            animation:
+                blob-move-free1 10s infinite alternate,
+                blob-spin1 14s infinite linear,
+                blob-morph1 7s infinite alternate;
         }
         .lava-lamp.left .blob2 {
-            width: 60px; height: 90px;
+            width: 200px; height: 300px;
             background: radial-gradient(circle at 60% 40%, var(--lava2) 70%, transparent 100%);
-            left: 30px; top: 60%;
-            animation: blob-move2 7s infinite alternate-reverse;
+            left: 100px; top: 60%;
+            animation:
+                blob-move-free2 12s infinite alternate-reverse,
+                blob-spin2 11s infinite linear,
+                blob-morph2 8s infinite alternate;
         }
         .lava-lamp.left .blob3 {
-            width: 40px; height: 60px;
+            width: 200px; height: 200px;
             background: radial-gradient(circle at 50% 50%, var(--lava3) 70%, transparent 100%);
-            left: 20px; top: 40%;
-            animation: blob-move3 6s infinite alternate;
+            left: 230px; top: 30%;
+            animation:
+                blob-move-free3 9s infinite alternate,
+                blob-spin3 13s infinite linear,
+                blob-morph3 6s infinite alternate;
         }
         /* Right lamp blobs */
         .lava-lamp.right .blob1 {
-            width: 80px; height: 110px;
+            width: 280px; height: 400px;
             background: radial-gradient(circle at 60% 40%, var(--lava2) 70%, transparent 100%);
-            left: 20px; top: 30%;
-            animation: blob-move1 8s infinite alternate;
+            right: 300px; top: 3%;
+            animation:
+                blob-move-free4 11s infinite alternate,
+                blob-spin4 15s infinite linear,
+                blob-morph4 7.5s infinite alternate;
         }
         .lava-lamp.right .blob2 {
-            width: 50px; height: 80px;
+            width: 500px; height: 800px;
             background: radial-gradient(circle at 40% 60%, var(--lava1) 70%, transparent 100%);
-            left: 40px; top: 65%;
-            animation: blob-move2 7s infinite alternate;
+            right: 40px; top: 65%;
+            animation:
+                blob-move-free5 13s infinite alternate-reverse,
+                blob-spin5 12s infinite linear,
+                blob-morph5 8.5s infinite alternate;
         }
         .lava-lamp.right .blob3 {
-            width: 45px; height: 65px;
+            width: 405px; height: 605px;
             background: radial-gradient(circle at 50% 50%, var(--lava3) 70%, transparent 100%);
-            left: 10px; top: 50%;
-            animation: blob-move3 6s ;
+            left: 10px; top: 10%;
+            animation:
+                blob-move-free6 10s infinite alternate,
+                blob-spin6 10s infinite linear,
+                blob-morph6 6.5s infinite alternate;
         }
 
-        @keyframes blob-move1 {
-            0% { transform: translateY(0) scale(1,1); }
-            50% { transform: translateY(-40px) scale(1.2,1.1); }
-            100% { transform: translateY(30px) scale(0.9,1.2);}
+        /* Freeform movement keyframes (translate in X and Y) */
+        @keyframes blob-move-free1 {
+            0%   { transform: translate(0, 0);}
+            20%  { transform: translate(10px, -30px);}
+            40%  { transform: translate(-15px, 20px);}
+            60%  { transform: translate(20px, 40px);}
+            80%  { transform: translate(-10px, -20px);}
+            100% { transform: translate(0, 0);}
         }
-        @keyframes blob-move2 {
-            0% { transform: translateY(0) scale(1,1); }
-            50% { transform: translateY(30px) scale(1.1,1.2);}
-            100% { transform: translateY(-25px) scale(1.2,0.9);}
+        @keyframes blob-move-free2 {
+            0%   { transform: translate(0, 0);}
+            25%  { transform: translate(-20px, 10px);}
+            50%  { transform: translate(15px, -25px);}
+            75%  { transform: translate(10px, 30px);}
+            100% { transform: translate(0, 0);}
         }
-        @keyframes blob-move3 {
-            0% { transform: translateY(0) scale(1,1);}
-            50% { transform: translateY(-20px) scale(1.3,1);}
-            100% { transform: translateY(15px) scale(0.8,1.1);}
+        @keyframes blob-move-free3 {
+            0%   { transform: translate(0, 0);}
+            30%  { transform: translate(12px, 18px);}
+            60%  { transform: translate(-18px, -10px);}
+            100% { transform: translate(0, 0);}
+        }
+        @keyframes blob-move-free4 {
+            0%   { transform: translate(0, 0);}
+            20%  { transform: translate(-15px, 25px);}
+            40%  { transform: translate(20px, -15px);}
+            60%  { transform: translate(-10px, 30px);}
+            80%  { transform: translate(15px, -20px);}
+            100% { transform: translate(0, 0);}
+        }
+        @keyframes blob-move-free5 {
+            0%   { transform: translate(0, 0);}
+            25%  { transform: translate(18px, -12px);}
+            50%  { transform: translate(-22px, 18px);}
+            75%  { transform: translate(10px, -25px);}
+            100% { transform: translate(0, 0);}
+        }
+        @keyframes blob-move-free6 {
+            0%   { transform: translate(0, 0);}
+            30%  { transform: translate(-10px, 20px);}
+            60%  { transform: translate(20px, -18px);}
+            100% { transform: translate(0, 0);}
+        }
+
+        /* Spinning keyframes */
+        @keyframes blob-spin1 { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+        @keyframes blob-spin2 { 0% { rotate: 0deg; } 100% { rotate: -360deg; } }
+        @keyframes blob-spin3 { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+        @keyframes blob-spin4 { 0% { rotate: 0deg; } 100% { rotate: -360deg; } }
+        @keyframes blob-spin5 { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+        @keyframes blob-spin6 { 0% { rotate: 0deg; } 100% { rotate: -360deg; } }
+
+        /* Morphing keyframes (scaleX/scaleY for organic shape) */
+        @keyframes blob-morph1 {
+            0%   { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+            25%  { border-radius: 60% 40% 55% 45% / 45% 55% 60% 40%; }
+            50%  { border-radius: 40% 60% 45% 55% / 55% 45% 40% 60%; }
+            75%  { border-radius: 55% 45% 60% 40% / 60% 40% 55% 45%; }
+            100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+        }
+        @keyframes blob-morph2 {
+            0%   { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+            20%  { border-radius: 65% 35% 60% 40% / 40% 60% 65% 35%; }
+            60%  { border-radius: 35% 65% 40% 60% / 60% 40% 35% 65%; }
+            100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+        }
+        @keyframes blob-morph3 {
+            0%   { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+            30%  { border-radius: 55% 45% 60% 40% / 60% 40% 55% 45%; }
+            70%  { border-radius: 45% 55% 40% 60% / 40% 60% 45% 55%; }
+            100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+        }
+        @keyframes blob-morph4 {
+            0%   { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+            25%  { border-radius: 60% 40% 55% 45% / 45% 55% 60% 40%; }
+            50%  { border-radius: 40% 60% 45% 55% / 55% 45% 40% 60%; }
+            75%  { border-radius: 55% 45% 60% 40% / 60% 40% 55% 45%; }
+            100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+        }
+        @keyframes blob-morph5 {
+            0%   { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+            20%  { border-radius: 65% 35% 60% 40% / 40% 60% 65% 35%; }
+            60%  { border-radius: 35% 65% 40% 60% / 60% 40% 35% 65%; }
+            100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+        }
+        @keyframes blob-morph6 {
+            0%   { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+            30%  { border-radius: 55% 45% 60% 40% / 60% 40% 55% 45%; }
+            70%  { border-radius: 45% 55% 40% 60% / 40% 60% 45% 55%; }
+            100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
         }
 
         header {
@@ -297,7 +393,10 @@
         <p>&copy; 2024 Geoff Gracia. All rights reserved.</p>
     </footer>
 
-    <script type="text/javascript">
+    
+    
+</body>
+<script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
     const projectItems = document.querySelectorAll('.project-item');
     
@@ -310,96 +409,94 @@
 
     function viewProject(project) {
         const template = `
-                    <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>${project.title}</title>
-                        <style>
-                            body {
-                                margin: 0;
-                                font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-                                background: linear-gradient(135deg, #23243a 0%, #181a2b 100%);
-                                color: #e3e6ee;
-                                padding: 20px;
-                                min-height: 100vh;
-                                animation: bg-fade-in 1.2s cubic-bezier(.4,0,.2,1) 0s 1;
-                            }
-                            @keyframes bg-fade-in {
-                                0% { filter: blur(16px) brightness(0.7);}
-                                80% { filter: blur(2px) brightness(1.05);}
-                                100% { filter: blur(0) brightness(1);}
-                            }
-                            .container {
-                                max-width: 800px;
-                                margin: 0 auto;
-                                background: rgba(0, 0, 0, 0.8);
-                                padding: 20px;
-                                border-radius: 10px;
-                                border: 1px solid #444;
-                                box-shadow: 0 4px 24px 0 rgba(20,20,40,0.18);
-                            }
-                            h1 {
-                                color: #4faaff;
-                                margin-bottom: 20px;
-                                font-size: 2rem;
-                                font-weight: 700;
-                                letter-spacing: 0.01em;
-                                text-shadow: 0 2px 12px #1a1a2a44;
-                            }
-                            p {
-                                color: #b3b8c5;
-                                font-size: 1.08rem;
-                                font-weight: 400;
-                            }
-                            a {
-                                color: #00e6b8;
-                                text-decoration: none;
-                                transition: color 0.3s;
-                                font-weight: 500;
-                            }
-                            a:hover {
-                                color: #4faaff;
-                                text-decoration: underline;
-                            }
-                            .back-button {
-                                display: inline-block;
-                                padding: 10px 20px;
-                                background: #23243a;
-                                color: #e3e6ee;
-                                border-radius: 5px;
-                                margin-top: 20px;
-                                cursor: pointer;
-                                border: none;
-                                font-size: 1rem;
-                                font-weight: 500;
-                                transition: background 0.2s;
-                            }
-                            .back-button:hover {
-                                background: #181a2b;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="container">
-                            <h1>${project.title}</h1>
-                            <p>${project.description}</p>
-                            <p>Explore the full project on <a href="${project.link}" target="_blank">GitHub</a>.</p>
-                            <button class="back-button" onclick="window.close()">Close Window</button>
-                        </div>
-                    </body>
-                    </html>
-                `;
-                const projectWindow = window.open('', '_blank', 'width=800,height=600');
-                projectWindow.document.open();
-                projectWindow.document.write(template);
-                projectWindow.document.close();
-            }
-        });
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${project.title}</title>
+                <style>
+                    body {
+                        margin: 0;
+                        font-family: 'Segoe UI', Arial, sans-serif;
+                        background: linear-gradient(135deg, #23243a 0%, #181a2b 100%);
+                        color: #e3e6ee;
+                        padding: 20px;
+                        min-height: 100vh;
+                        animation: bg-fade-in 1.2s cubic-bezier(.4,0,.2,1) 0s 1;
+                    }
+                    @keyframes bg-fade-in {
+                        0% { filter: blur(16px) brightness(0.7);}
+                        80% { filter: blur(2px) brightness(1.05);}
+                        100% { filter: blur(0) brightness(1);}
+                    }
+                    .container {
+                        max-width: 800px;
+                        margin: 0 auto;
+                        background: rgba(0, 0, 0, 0.8);
+                        padding: 20px;
+                        border-radius: 10px;
+                        border: 1px solid #444;
+                        box-shadow: 0 4px 24px 0 rgba(20,20,40,0.18);
+                    }
+                    h1 {
+                        color: #4faaff;
+                        margin-bottom: 20px;
+                        font-size: 2rem;
+                        font-weight: 700;
+                        letter-spacing: 0.01em;
+                        text-shadow: 0 2px 12px #1a1a2a44;
+                    }
+                    p {
+                        color: #b3b8c5;
+                        font-size: 1.08rem;
+                        font-weight: 400;
+                    }
+                    a {
+                        color: #00e6b8;
+                        text-decoration: none;
+                        transition: color 0.3s;
+                        font-weight: 500;
+                    }
+                    a:hover {
+                        color: #4faaff;
+                        text-decoration: underline;
+                    }
+                    .back-button {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background: #23243a;
+                        color: #e3e6ee;
+                        border-radius: 5px;
+                        margin-top: 20px;
+                        cursor: pointer;
+                        border: none;
+                        font-size: 1rem;
+                        font-weight: 500;
+                        transition: background 0.2s;
+                    }
+                    .back-button:hover {
+                        background: #181a2b;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>${project.title}</h1>
+                    <p>${project.description}</p>
+                    <p>Explore the full project on <a href="${project.link}" target="_blank">GitHub</a>.</p>
+                    <button class="back-button" onclick="window.close()">Close Window</button>
+                </div>
+            </body>
+            </html>
+        `;
+        const projectWindow = window.open('', '_blank', 'width=800,height=600');
+        projectWindow.document.open();
+        projectWindow.document.write(template);
+        projectWindow.document.close();
+    }
+});
 </script>
-    
-</body>
 
 
 </html>
